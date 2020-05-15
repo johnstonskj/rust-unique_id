@@ -18,3 +18,10 @@ targets = ["x86_64-unknown-linux-gnu"]
 atomic_refcell = "0.1.6"
 blob-uuid = "0.3.1"
 lazy_static = "1.4.0"
+
+[dev-dependencies]
+criterion = "0.3.2"
+
+[[bench]]
+name = "compare"
+harness = false

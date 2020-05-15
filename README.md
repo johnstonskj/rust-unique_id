@@ -31,6 +31,11 @@ for _ in 1..100_000 {
 
 ## Changes
 
+**Version 0.1.1**
+
+* Added trait `GeneratorFromSeed` and implementation for `SequenceGenerator`.
+* Added benchmark to compare the two current implementations.
+
 **Version 0.1.0**
 
 * Simple traits `Generator`, `GeneratorWithInvalid`, and `GeneratorFromStr`.
@@ -39,5 +44,4 @@ for _ in 1..100_000 {
 
 ## TODO
 
-1. Allow for seeding
-1. Decide on FromStr support
+1. Decide on better `FromStr` support.
