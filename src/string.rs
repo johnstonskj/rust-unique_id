@@ -1,19 +1,36 @@
 /*!
-One-line description.
+An implementation that provides unique string values.
 
-More detailed description, with
+These string values are a fixed length and are generated as a representation of random UUID 128-bit values.
 
 # Example
 
+```rust
+use unique_id::{Generator, GeneratorWithInvalid};
+use unique_id::string::StringGenerator;
+
+let gen = StringGenerator::default();
+let id = gen.next_id();
+assert_ne!(id, StringGenerator::invalid_id())
+```
 */
 
-use crate::Generator;
+use crate::{Generator, GeneratorFromStr, GeneratorWithInvalid};
 use std::marker::PhantomData;
 
 // ------------------------------------------------------------------------------------------------
 // Public Types
 // ------------------------------------------------------------------------------------------------
 
+///
+/// Generates random, unique string values from UUIDs.
+///
+/// Provides implementations of:
+///
+/// * `Generator` - returns random `String` values.
+/// * `GeneratorWithInvalid` - returns an invalid, as an ID, `String` value.
+/// * `GeneratorFromStr` - ensures validity of a string representation as an `String` ID.
+///
 #[derive(Clone, Debug)]
 pub struct StringGenerator {
     private: PhantomData<String>,
@@ -34,18 +51,22 @@ impl Default for StringGenerator {
 }
 
 impl Generator<String> for StringGenerator {
+    fn next_id(&self) -> String {
+        blob_uuid::random_blob()
+    }
+}
+
+impl GeneratorWithInvalid<String> for StringGenerator {
     fn invalid_id() -> String
     where
         Self: Sized,
     {
         INVALID_VALUE.into()
     }
+}
 
-    fn next_id(&self) -> String {
-        blob_uuid::random_blob()
-    }
-
-    fn is_valid_value(&self, s: &str) -> bool {
+impl GeneratorFromStr<String> for StringGenerator {
+    fn is_valid_value(s: &str) -> bool {
         !s.is_empty()
             && s.chars()
                 .all(|c| c.is_alphanumeric() || c == '-' || c == '_')
