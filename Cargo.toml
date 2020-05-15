@@ -1,0 +1,19 @@
+[package]
+name = "unique_id"
+version = "0.1.0"
+authors = ["Simon Johnston <johnstonskj@gmail.com>"]
+edition = "2018"
+description = "A trait and implementations for unique ID generators."
+repository = "https://github.com/johnstonskj/rust-unique_id.git"
+license-file = "LICENSE"
+readme = "README.md"
+publish = true
+
+[package.metadata.docs.rs]
+# This sets the default target to `x86_64-unknown-linux-gnu`
+# and only builds that target for documentation.
+targets = ["x86_64-unknown-linux-gnu"]
+
+[dependencies]
+blob-uuid = "0.3.1"
+lazy_static = "1.4.0"
