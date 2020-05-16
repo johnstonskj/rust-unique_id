@@ -1,7 +1,8 @@
 /*!
 An implementation that provides unique string values.
 
-These string values are a fixed length and are generated as a representation of random UUID 128-bit values.
+These string values are a fixed length and are generated as a representation of random UUID 128-bit
+values. This implementation depends upon the [blob_uuid](https://crates.io/crates/blob-uuid) crate.
 
 # Example
 
@@ -51,12 +52,14 @@ impl Default for StringGenerator {
 }
 
 impl Generator<String> for StringGenerator {
+    #[inline]
     fn next_id(&self) -> String {
         blob_uuid::random_blob()
     }
 }
 
 impl GeneratorWithInvalid<String> for StringGenerator {
+    #[inline]
     fn invalid_id() -> String
     where
         Self: Sized,

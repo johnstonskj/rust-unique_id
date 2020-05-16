@@ -31,6 +31,12 @@ for _ in 1..100_000 {
 
 ## Changes
 
+**Version 0.1.2**
+
+* Added new `RandomGenerator` implementation.
+* Put each implementation into its own feature.
+* Added `#[inline]` to some functions.
+
 **Version 0.1.1**
 
 * Added trait `GeneratorFromSeed` and implementation for `SequenceGenerator`.

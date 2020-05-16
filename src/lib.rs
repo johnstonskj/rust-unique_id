@@ -8,7 +8,7 @@ implementations of this trait are provided which provide unique string and integ
 
 The following shows an example of the `StringGenerator` implementation.
 
-```rust
+```rust,ignore
 use unique_id::Generator;
 use unique_id::string::StringGenerator;
 
@@ -22,6 +22,7 @@ for _ in 1..100_000 {
 
 */
 
+#[cfg(feature = "sequence")]
 #[macro_use]
 extern crate lazy_static;
 
@@ -93,6 +94,11 @@ where
 // Modules
 // ------------------------------------------------------------------------------------------------
 
+#[cfg(feature = "random")]
+pub mod random;
+
+#[cfg(feature = "sequence")]
 pub mod sequence;
 
+#[cfg(feature = "string")]
 pub mod string;

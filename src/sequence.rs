@@ -34,7 +34,7 @@ use std::sync::Arc;
 /// * `GeneratorFromStr` - ensures validity of a string representation as an `i64` ID.
 /// * `GeneratorFromSeed` - initializes the generator with a known seed value.
 ///
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct SequenceGenerator {
     private: PhantomData<String>,
 }
@@ -43,7 +43,7 @@ pub struct SequenceGenerator {
 // Private Types
 // ------------------------------------------------------------------------------------------------
 
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 struct SequenceInner {
     value: Arc<AtomicRefCell<AtomicI64>>,
 }
@@ -123,7 +123,7 @@ mod tests {
         let mut last = gen.next_id();
         for _ in 1..100_000 {
             let next = gen.next_id();
-            assert_ne!(last, next);
+            assert_eq!(next, last + 1);
             last = next;
         }
     }
