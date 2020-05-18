@@ -87,6 +87,12 @@ The output can be found in `target/criterion/report/index.html`.
 
 ## Changes
 
+**Version 0.1.3**
+
+* Moved module-specific unit tests into a combined `tests/unique.rs`.
+* Renamed `integer` to `sequence` in benchmarks.
+* Added more to the documentation.
+
 **Version 0.1.2**
 
 * Added new `RandomGenerator` implementation.
@@ -96,14 +102,10 @@ The output can be found in `target/criterion/report/index.html`.
 **Version 0.1.1**
 
 * Added trait `GeneratorFromSeed` and implementation for `SequenceGenerator`.
-* Added benchmark to compare the two current implementations.
+* Added a benchmark to compare the two current implementations.
 
 **Version 0.1.0**
 
 * Simple traits `Generator`, `GeneratorWithInvalid`, and `GeneratorFromStr`.
 * `StringGenerator` using UUIDs
 * `SequenceGenerator` using `i64`
-
-## TODO
-
-1. Decide on better `FromStr` support.
