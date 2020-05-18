@@ -74,23 +74,3 @@ impl GeneratorFromStr<String> for StringGenerator {
                 .all(|c| c.is_alphanumeric() || c == '-' || c == '_')
     }
 }
-
-// ------------------------------------------------------------------------------------------------
-// Unit Tests
-// ------------------------------------------------------------------------------------------------
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_something() {
-        let gen = StringGenerator::default();
-        let mut last = gen.next_id();
-        for _ in 1..100_000 {
-            let next = gen.next_id();
-            assert_ne!(last, next);
-            last = next;
-        }
-    }
-}

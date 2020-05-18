@@ -111,23 +111,3 @@ impl Default for SequenceInner {
         }
     }
 }
-
-// ------------------------------------------------------------------------------------------------
-// Unit Tests
-// ------------------------------------------------------------------------------------------------
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_something() {
-        let gen = SequenceGenerator::default();
-        let mut last = gen.next_id();
-        for _ in 1..100_000 {
-            let next = gen.next_id();
-            assert_eq!(next, last + 1);
-            last = next;
-        }
-    }
-}

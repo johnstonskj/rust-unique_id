@@ -67,23 +67,3 @@ impl GeneratorWithInvalid<u128> for RandomGenerator {
         Uuid::nil().as_u128()
     }
 }
-
-// ------------------------------------------------------------------------------------------------
-// Unit Tests
-// ------------------------------------------------------------------------------------------------
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_something() {
-        let gen = RandomGenerator::default();
-        let mut last = gen.next_id();
-        for _ in 1..100_000 {
-            let next = gen.next_id();
-            assert_ne!(last, next);
-            last = next;
-        }
-    }
-}
