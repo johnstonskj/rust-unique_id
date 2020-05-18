@@ -10,12 +10,12 @@ use unique_id::Generator;
 fn generator_benchmark(c: &mut Criterion) {
     let mut group = c.benchmark_group("Compare Implementations");
     let str_gen = StringGenerator::default();
-    let int_gen = SequenceGenerator::default();
+    let seq_gen = SequenceGenerator::default();
     let rnd_gen = RandomGenerator::default();
 
-    group.bench_function("string", |b| b.iter(|| str_gen.next_id()));
-    group.bench_function("integer", |b| b.iter(|| int_gen.next_id()));
     group.bench_function("random", |b| b.iter(|| rnd_gen.next_id()));
+    group.bench_function("sequence", |b| b.iter(|| seq_gen.next_id()));
+    group.bench_function("string", |b| b.iter(|| str_gen.next_id()));
 
     group.finish();
 }
