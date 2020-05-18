@@ -26,7 +26,8 @@ use uuid::Uuid;
 // ------------------------------------------------------------------------------------------------
 
 ///
-/// Generates random u128 values generated from UUIDs.
+/// Generates random u128 values generated from UUIDs. This implementation does provide an
+/// invalid value, `0 as u128`.
 ///
 /// Provides implementations of:
 ///

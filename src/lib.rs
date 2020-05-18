@@ -33,7 +33,9 @@ use std::str::FromStr;
 // ------------------------------------------------------------------------------------------------
 
 ///
-/// The primary ID generator trait, it provides for generating a new ID with `next_id()`.
+/// The primary ID generator trait, it provides for generating a new ID with `next_id()`. There
+/// is no implication that this returns any overall sequence of values, only that it returns a
+/// unique value for each call.
 ///
 pub trait Generator<T>: Default
 where

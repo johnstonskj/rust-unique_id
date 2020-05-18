@@ -1,8 +1,10 @@
 /*!
 An implementation that provides monotonically increasing integer values.
 
-While `SequenceGenerator` is thread safe and it's shared implementation assures that IDs are
-generated uniquely among threads it is always initialized to the same value when a process starts.
+While `SequenceGenerator` is thread safe, _and_ it's shared implementation assures that IDs are
+generated uniquely among threads, it is always initialized to the same value when a process starts.
+It provides an implementation of the trait `GeneratorFromSeed` that allows a process to initialize
+the counter with a specific value.
 
 # Example
 
@@ -25,7 +27,8 @@ use std::sync::Arc;
 // ------------------------------------------------------------------------------------------------
 
 ///
-/// Generates monotonically increasing `i64` values.
+/// Generates monotonically increasing `i64` values. Not that only values `>= 0` will be returned
+/// such that any negative value can be assumed to be invalid.
 ///
 /// Provides implementations of:
 ///

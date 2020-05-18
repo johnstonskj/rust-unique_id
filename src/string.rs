@@ -24,7 +24,8 @@ use std::marker::PhantomData;
 // ------------------------------------------------------------------------------------------------
 
 ///
-/// Generates random, unique string values from UUIDs.
+/// Generates random, unique string values from UUIDs. This implementation does provide an invalid
+/// value, the empty string.
 ///
 /// Provides implementations of:
 ///
@@ -40,8 +41,6 @@ pub struct StringGenerator {
 // ------------------------------------------------------------------------------------------------
 // Implementations
 // ------------------------------------------------------------------------------------------------
-
-const INVALID_VALUE: &str = "<invalid-state-tag>";
 
 impl Default for StringGenerator {
     fn default() -> Self {
@@ -64,7 +63,7 @@ impl GeneratorWithInvalid<String> for StringGenerator {
     where
         Self: Sized,
     {
-        INVALID_VALUE.into()
+        String::new()
     }
 }
 
