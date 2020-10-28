@@ -7,6 +7,7 @@ A trait and implementations for unique ID generators.
 [![crates.io](https://img.shields.io/crates/v/unique_id.svg)](https://crates.io/crates/unique_id)
 [![docs.rs](https://docs.rs/unique_id/badge.svg)](https://docs.rs/unique_id)
 ![Build](https://github.com/johnstonskj/rust-unique_id/workflows/Rust/badge.svg)
+![Audit](https://github.com/johnstonskj/rust-unique_id/workflows/Security%20audit/badge.svg)
 [![GitHub stars](https://img.shields.io/github/stars/johnstonskj/rust-unique_id.svg)](https://github.com/johnstonskj/rust-unique_id/stargazers)
 
 This crate provides four simple traits, starting with `Generator`. This will return successive unique identifiers, the
