@@ -88,6 +88,11 @@ The output can be found in `target/criterion/report/index.html`.
 
 ## Changes
 
+**Version 0.1.4**
+
+* Updated dependencies for `uuid` and `blob-uuid` via dependabot.
+* Removed `PhantomData` in generator structures.
+
 **Version 0.1.3**
 
 * Moved module-specific unit tests into a combined `tests/unique.rs`.

@@ -18,7 +18,6 @@ let id = gen.next_id();
 
 use crate::{Generator, GeneratorFromSeed, GeneratorFromStr, GeneratorWithInvalid};
 use atomic_refcell::AtomicRefCell;
-use std::marker::PhantomData;
 use std::sync::atomic::{AtomicI64, Ordering};
 use std::sync::Arc;
 
@@ -38,9 +37,7 @@ use std::sync::Arc;
 /// * `GeneratorFromSeed` - initializes the generator with a known seed value.
 ///
 #[derive(Clone, Debug)]
-pub struct SequenceGenerator {
-    private: PhantomData<String>,
-}
+pub struct SequenceGenerator;
 
 // ------------------------------------------------------------------------------------------------
 // Private Types
@@ -61,9 +58,7 @@ lazy_static! {
 
 impl Default for SequenceGenerator {
     fn default() -> Self {
-        Self {
-            private: Default::default(),
-        }
+        Self {}
     }
 }
 

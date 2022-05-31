@@ -18,7 +18,6 @@ assert_ne!(id, RandomGenerator::invalid_id())
 */
 
 use crate::{Generator, GeneratorWithInvalid};
-use std::marker::PhantomData;
 use uuid::Uuid;
 
 // ------------------------------------------------------------------------------------------------
@@ -35,9 +34,7 @@ use uuid::Uuid;
 /// * `GeneratorWithInvalid` - returns an invalid, as an ID, `u128` value.
 ///
 #[derive(Clone, Debug)]
-pub struct RandomGenerator {
-    private: PhantomData<String>,
-}
+pub struct RandomGenerator;
 
 // ------------------------------------------------------------------------------------------------
 // Implementations
@@ -45,9 +42,7 @@ pub struct RandomGenerator {
 
 impl Default for RandomGenerator {
     fn default() -> Self {
-        RandomGenerator {
-            private: Default::default(),
-        }
+        Self {}
     }
 }
 

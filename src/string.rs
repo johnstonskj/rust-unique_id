@@ -17,7 +17,6 @@ assert_ne!(id, StringGenerator::invalid_id())
 */
 
 use crate::{Generator, GeneratorFromStr, GeneratorWithInvalid};
-use std::marker::PhantomData;
 
 // ------------------------------------------------------------------------------------------------
 // Public Types
@@ -34,9 +33,7 @@ use std::marker::PhantomData;
 /// * `GeneratorFromStr` - ensures validity of a string representation as an `String` ID.
 ///
 #[derive(Clone, Debug)]
-pub struct StringGenerator {
-    private: PhantomData<String>,
-}
+pub struct StringGenerator;
 
 // ------------------------------------------------------------------------------------------------
 // Implementations
@@ -44,9 +41,7 @@ pub struct StringGenerator {
 
 impl Default for StringGenerator {
     fn default() -> Self {
-        StringGenerator {
-            private: Default::default(),
-        }
+        Self {}
     }
 }
 
