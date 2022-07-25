@@ -17,9 +17,7 @@ let id = gen.next_id();
 */
 
 use crate::{Generator, GeneratorFromSeed, GeneratorFromStr, GeneratorWithInvalid};
-use atomic_refcell::AtomicRefCell;
 use std::sync::atomic::{AtomicI64, Ordering};
-use std::sync::Arc;
 
 // ------------------------------------------------------------------------------------------------
 // Public Types
@@ -43,9 +41,9 @@ pub struct SequenceGenerator;
 // Private Types
 // ------------------------------------------------------------------------------------------------
 
-#[derive(Clone, Debug)]
+#[derive(Debug)]
 struct SequenceInner {
-    value: Arc<AtomicRefCell<AtomicI64>>,
+    value: AtomicI64,
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -66,7 +64,6 @@ impl Generator<i64> for SequenceGenerator {
     fn next_id(&self) -> i64 {
         IDGENERATOR
             .value
-            .borrow_mut()
             .fetch_add(1, Ordering::SeqCst)
     }
 }
@@ -91,7 +88,6 @@ impl GeneratorFromSeed<i64> for SequenceGenerator {
         assert!(seed >= 0);
         IDGENERATOR
             .value
-            .borrow_mut()
             .store(seed, Ordering::Relaxed);
         Self::default()
     }
@@ -102,7 +98,7 @@ impl GeneratorFromSeed<i64> for SequenceGenerator {
 impl Default for SequenceInner {
     fn default() -> Self {
         Self {
-            value: Arc::new(AtomicRefCell::new(AtomicI64::new(1))),
+            value: AtomicI64::new(1),
         }
     }
 }

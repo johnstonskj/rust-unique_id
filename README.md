@@ -88,6 +88,11 @@ The output can be found in `target/criterion/report/index.html`.
 
 ## Changes
 
+**Version 0.1.5**
+
+* Simplified implementation of `SequenceGenerator`.
+* Removed `atomic_refcell` dependency.
+
 **Version 0.1.4**
 
 * Updated dependencies for `uuid` and `blob-uuid` via dependabot.
