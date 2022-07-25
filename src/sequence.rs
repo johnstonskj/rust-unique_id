@@ -54,12 +54,6 @@ lazy_static! {
     static ref IDGENERATOR: SequenceInner = SequenceInner::default();
 }
 
-impl Default for SequenceGenerator {
-    fn default() -> Self {
-        Self {}
-    }
-}
-
 impl Generator<i64> for SequenceGenerator {
     fn next_id(&self) -> i64 {
         IDGENERATOR.value.fetch_add(1, Ordering::SeqCst)
@@ -86,5 +80,15 @@ impl GeneratorFromSeed<i64> for SequenceGenerator {
         assert!(seed >= 0);
         IDGENERATOR.value.store(seed, Ordering::Relaxed);
         Self::default()
+    }
+}
+
+// ------------------------------------------------------------------------------------------------
+
+impl Default for SequenceInner {
+    fn default() -> Self {
+        Self {
+            value: AtomicI64::new(1),
+        }
     }
 }
