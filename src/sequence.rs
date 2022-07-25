@@ -34,7 +34,7 @@ use std::sync::atomic::{AtomicI64, Ordering};
 /// * `GeneratorFromStr` - ensures validity of a string representation as an `i64` ID.
 /// * `GeneratorFromSeed` - initializes the generator with a known seed value.
 ///
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct SequenceGenerator;
 
 // ------------------------------------------------------------------------------------------------
@@ -62,9 +62,7 @@ impl Default for SequenceGenerator {
 
 impl Generator<i64> for SequenceGenerator {
     fn next_id(&self) -> i64 {
-        IDGENERATOR
-            .value
-            .fetch_add(1, Ordering::SeqCst)
+        IDGENERATOR.value.fetch_add(1, Ordering::SeqCst)
     }
 }
 
@@ -86,19 +84,7 @@ impl GeneratorFromStr<i64> for SequenceGenerator {
 impl GeneratorFromSeed<i64> for SequenceGenerator {
     fn new(seed: i64) -> Self {
         assert!(seed >= 0);
-        IDGENERATOR
-            .value
-            .store(seed, Ordering::Relaxed);
+        IDGENERATOR.value.store(seed, Ordering::Relaxed);
         Self::default()
-    }
-}
-
-// ------------------------------------------------------------------------------------------------
-
-impl Default for SequenceInner {
-    fn default() -> Self {
-        Self {
-            value: AtomicI64::new(1),
-        }
     }
 }

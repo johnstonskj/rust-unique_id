@@ -33,18 +33,12 @@ use uuid::Uuid;
 /// * `Generator` - returns random `u128` values.
 /// * `GeneratorWithInvalid` - returns an invalid, as an ID, `u128` value.
 ///
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct RandomGenerator;
 
 // ------------------------------------------------------------------------------------------------
 // Implementations
 // ------------------------------------------------------------------------------------------------
-
-impl Default for RandomGenerator {
-    fn default() -> Self {
-        Self {}
-    }
-}
 
 impl Generator<u128> for RandomGenerator {
     #[inline]

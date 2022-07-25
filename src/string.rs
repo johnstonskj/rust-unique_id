@@ -32,18 +32,12 @@ use crate::{Generator, GeneratorFromStr, GeneratorWithInvalid};
 /// * `GeneratorWithInvalid` - returns an invalid, as an ID, `String` value.
 /// * `GeneratorFromStr` - ensures validity of a string representation as an `String` ID.
 ///
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Default)]
 pub struct StringGenerator;
 
 // ------------------------------------------------------------------------------------------------
 // Implementations
 // ------------------------------------------------------------------------------------------------
-
-impl Default for StringGenerator {
-    fn default() -> Self {
-        Self {}
-    }
-}
 
 impl Generator<String> for StringGenerator {
     #[inline]
