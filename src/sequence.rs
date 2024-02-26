@@ -24,7 +24,7 @@ use std::sync::atomic::{AtomicI64, Ordering};
 // ------------------------------------------------------------------------------------------------
 
 ///
-/// Generates monotonically increasing `i64` values. Not that only values `>= 0` will be returned
+/// Generates monotonically increasing `i64` values. Note that only values `>= 0` will be returned
 /// such that any negative value can be assumed to be invalid.
 ///
 /// Provides implementations of:
