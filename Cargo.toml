@@ -1,6 +1,6 @@
 [package]
 name = "unique_id"
-version = "0.1.5"
+version = "0.1.6"
 authors = ["Simon Johnston <johnstonskj@gmail.com>"]
 edition = "2018"
 description = "Traits and implementations for unique ID generators."
