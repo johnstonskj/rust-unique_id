@@ -115,6 +115,12 @@ This package and repository is licensed under the MIT license (see file
 
 ## Changes
 
+### Version 0.1.7
+
+* Update the `SequenceGenerator` implementation from using the `lazy_static`
+  macro to the standard library's `LazyLock` and remove the external
+  dependency.
+
 ### Version 0.1.6
 
 * Relicensed under both MIT as well as Apache-2.0.

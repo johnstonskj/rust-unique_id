@@ -17,7 +17,10 @@ let id = gen.next_id();
 */
 
 use crate::{Generator, GeneratorFromSeed, GeneratorFromStr, GeneratorWithInvalid};
-use std::sync::atomic::{AtomicI64, Ordering};
+use std::sync::{
+    atomic::{AtomicI64, Ordering},
+    LazyLock,
+};
 
 // ------------------------------------------------------------------------------------------------
 // Public Types
@@ -50,13 +53,11 @@ struct SequenceInner {
 // Implementations
 // ------------------------------------------------------------------------------------------------
 
-lazy_static! {
-    static ref IDGENERATOR: SequenceInner = SequenceInner::default();
-}
+static GENERATOR: LazyLock<SequenceInner> = LazyLock::new(|| SequenceInner::default());
 
 impl Generator<i64> for SequenceGenerator {
     fn next_id(&self) -> i64 {
-        IDGENERATOR.value.fetch_add(1, Ordering::SeqCst)
+        GENERATOR.value.fetch_add(1, Ordering::SeqCst)
     }
 }
 
@@ -78,7 +79,7 @@ impl GeneratorFromStr<i64> for SequenceGenerator {
 impl GeneratorFromSeed<i64> for SequenceGenerator {
     fn new(seed: i64) -> Self {
         assert!(seed >= 0);
-        IDGENERATOR.value.store(seed, Ordering::Relaxed);
+        GENERATOR.value.store(seed, Ordering::Relaxed);
         Self::default()
     }
 }

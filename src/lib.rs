@@ -42,10 +42,6 @@ unused_qualifications,
 unused_results,
 )]
 
-#[cfg(feature = "sequence")]
-#[macro_use]
-extern crate lazy_static;
-
 use std::str::FromStr;
 
 // ------------------------------------------------------------------------------------------------
