@@ -10,20 +10,24 @@ A trait and implementations for unique ID generators.
 ![Audit](https://github.com/johnstonskj/rust-unique_id/workflows/Security%20audit/badge.svg)
 [![GitHub stars](https://img.shields.io/github/stars/johnstonskj/rust-unique_id.svg)](https://github.com/johnstonskj/rust-unique_id/stargazers)
 
-This crate provides four simple traits, starting with `Generator`. This will return successive unique identifiers, the
-only requirement of an identifier being that it implements `PartialEq`. 
+This crate provides four simple traits, starting with `Generator`. This will
+return successive unique identifiers, the only requirement of an identifier
+being that it implements `PartialEq`.
 
-Each implemented generator is in its own feature, by default all of which are included.
+Each implemented generator is in its own feature, by default all of which
+are included.
 
-* Generator [`RandomGenerator`](https://docs.rs/unique_id/0.1.2/unique_id/random/struct.RandomGenerator.html), in 
-  feature `random`, provides a random number scheme returning `u128` values. Depends on the 
-  [uuid](https://crates.io/crates/uuid) crate.
-* Generator [`SequenceGenerator`](https://docs.rs/unique_id/0.1.2/unique_id/sequence/struct.SequenceGenerator.html), 
-  in feature `sequence`, provides monotonically increasing u64 values in a thread safe manner. Depends on the 
-  [atomic_refcell](https://crates.io/crates/atomic_refcell) and [lazy_static](https://crates.io/crates/lazy_static) 
-  crates.
-* Generator [`StringGenerator`](https://docs.rs/unique_id/0.1.2/unique_id/string/struct.StringGenerator.html), in 
-  feature `string`, provides random string values. Depends on the [blob-uuid](https://crates.io/crates/blob-uuid) crate.
+* Generator [`RandomGenerator`](https://docs.rs/unique_id/0.1.2/unique_id/random/struct.RandomGenerator.html),
+  in feature `random`, provides a random number scheme returning `u128`
+  values. Depends on the [uuid](https://crates.io/crates/uuid) crate.
+* Generator [`SequenceGenerator`](https://docs.rs/unique_id/0.1.2/unique_id/sequence/struct.SequenceGenerator.html),
+  in feature `sequence`, provides monotonically increasing u64 values in a
+  thread safe manner. Depends on the
+  [atomic_refcell](https://crates.io/crates/atomic_refcell) and
+  [lazy_static](https://crates.io/crates/lazy_static) crates.
+* Generator [`StringGenerator`](https://docs.rs/unique_id/0.1.2/unique_id/string/struct.StringGenerator.html),
+  in feature `string`, provides random string values. Depends on the
+  [blob-uuid](https://crates.io/crates/blob-uuid) crate.
 
 ## Example
 
@@ -44,8 +48,9 @@ for _ in 1..100_000 {
 
 ## Benchmarks
 
-The `cargo bench` command will run a comparison benchmark to show the relative performance of all generators. This
-benchmark is in `benches/compare.cs` and uses Criterion for report generation.
+The `cargo bench` command will run a comparison benchmark to show the relative
+performance of all generators. This benchmark is in `benches/compare.cs` and
+uses Criterion for report generation.
 
 ```bash
 $ cargo bench
@@ -86,36 +91,63 @@ Found 7 outliers among 100 measurements (7.00%)
 
 The output can be found in `target/criterion/report/index.html`.
 
+## License
+
+This package and repository is licensed under the MIT license (see file
+[./LICENSE-MIT](LICENSE-MIT)) and the Apache License, Version 2.0 (see
+[./LICENSE-APACHE](LICENSE-APACHE)) and the following:
+
+> ```text
+> Copyright 2025 Simon Johnston <johnstonskj@gmail.com>
+> 
+> Licensed under the Apache License, Version 2.0 (the "License");
+> you may not use this file except in compliance with the License.
+> You may obtain a copy of the License at
+> 
+>     http://www.apache.org/licenses/LICENSE-2.0
+> 
+> Unless required by applicable law or agreed to in writing, software
+> distributed under the License is distributed on an "AS IS" BASIS,
+> WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+> See the License for the specific language governing permissions and
+> limitations under the License.
+> ```
+
 ## Changes
 
-**Version 0.1.5**
+### Version 0.1.6
+
+* Relicensed under both MIT as well as Apache-2.0.
+* Update dependency versions.
+
+### Version 0.1.5
 
 * Simplified implementation of `SequenceGenerator`.
 * Removed `atomic_refcell` dependency.
 
-**Version 0.1.4**
+### Version 0.1.4
 
 * Updated dependencies for `uuid` and `blob-uuid` via dependabot.
 * Removed `PhantomData` in generator structures.
 
-**Version 0.1.3**
+### Version 0.1.3
 
 * Moved module-specific unit tests into a combined `tests/unique.rs`.
 * Renamed `integer` to `sequence` in benchmarks.
 * Added more to the documentation.
 
-**Version 0.1.2**
+### Version 0.1.2
 
 * Added new `RandomGenerator` implementation.
 * Put each implementation into its own feature.
 * Added `#[inline]` to some functions.
 
-**Version 0.1.1**
+### Version 0.1.1
 
 * Added trait `GeneratorFromSeed` and implementation for `SequenceGenerator`.
 * Added a benchmark to compare the two current implementations.
 
-**Version 0.1.0**
+### Version 0.1.0
 
 * Simple traits `Generator`, `GeneratorWithInvalid`, and `GeneratorFromStr`.
 * `StringGenerator` using UUIDs
