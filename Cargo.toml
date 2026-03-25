@@ -25,7 +25,7 @@ blob-uuid = { version = "0.5.0", optional = true }
 uuid = { version = "1.17.0", features = ["v4"], optional = true }
 
 [dev-dependencies]
-criterion = "0.7.0"
+criterion = "0.8.2"
 
 [[bench]]
 name = "compare"
